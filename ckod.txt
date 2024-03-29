@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main() {
+    char islem;
+    float sayi1, sayi2, sonuc;
+    int devam = 1; // Devam etme kontrolü için bir değişken
+
+    while (devam) { // Kullanıcı devam etmek istemedikçe döngü devam eder
+        printf("Yapmak istediginiz islemi giriniz (+, -, *, /): ");
+        scanf(" %c", &islem);
+        printf("Birinci sayiyi giriniz: ");
+        scanf("%f", &sayi1);
+        printf("Ikinci sayiyi giriniz: ");
+        scanf("%f", &sayi2);
+
+        switch (islem) {
+            case '+':
+                sonuc = sayi1 + sayi2;
+                break;
+            case '-':
+                sonuc = sayi1 - sayi2;
+                break;
+            case '*':
+                sonuc = sayi1 * sayi2;
+                break;
+            case '/':
+                if (sayi2 == 0) {
+                    printf("Sifira bolme islemi yapilamaz!\n");
+                    continue; // Sıfıra bölme hatası olduğunda döngünün başına dön
+                }
+                sonuc = sayi1 / sayi2;
+                break;
+            default:
+                printf("Gecersiz bir islem girdiniz!\n");
+                continue; // Geçersiz işlem olduğunda döngünün başına dön
+        }
+
+        printf("%.2f %c %.2f = %.2f\n", sayi1, islem, sayi2, sonuc);
+
+        // Kullanıcıdan devam etmek isteyip istemediğini sorma
+        printf("Baska bir islem yapmak istiyor musunuz? (Evet icin 1, Hayir icin 0): ");
+        scanf("%d", &devam);
+    }
+
+    return 0;
+}
